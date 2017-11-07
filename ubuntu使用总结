@@ -1,0 +1,35 @@
+1  Ubuntu /boot 空间不足解决方法
+    http://blog.csdn.net/realghost/article/details/56831050
+    Linux 中 /boot 是存放系统启动文件的地方，安装 ubuntu 时单独分区给 200M 足够，但是系统内核更新后，老的内核依然保存在 /boot 分区内，几次升级后，就会提示 /boot 空间不足。
+
+    我们只要删掉老的内核，将空间释放出来就可以了。
+
+    先查看系统当前使用的什么版本的内核 uname -a
+
+    $ uname -a
+    Linux ubuntu-ThinkPad-Edge 4.8.0-38-generic #41-Ubuntu SMP Wed Feb 8 14:27:17 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+
+    这里显示当前内核是 4.8.0-38
+
+    查看系统中安装已经安装的内核 dpkg --get-selections | grep linux-image
+
+    $ dpkg --get-selections | grep linux-image
+    linux-image-4.8.0-22-generic            deinstall
+    linux-image-4.8.0-34-generic            install
+    linux-image-4.8.0-37-generic            install
+    linux-image-4.8.0-38-generic            install
+    linux-image-extra-4.8.0-22-generic      deinstall
+    linux-image-extra-4.8.0-34-generic      install
+    linux-image-extra-4.8.0-37-generic      install
+    linux-image-extra-4.8.0-38-generic      install
+    linux-image-generic             install
+
+
+    后面显示 deinstall 的表示已经删除了的， install 表示没有删除的
+    这时可以看到除了当前的 4.8.0-38 之外，还有 4.8.0-34 4.8.0.37 这几个过期的版本
+
+    删除这几个版本 sudo apt-get remove linux-image-xxx 这里的 xxx 就是上面过期版本的版本号
+
+    还有没有删除干净的内容可以用 sudo apt-get autoremove 来清理
+
+    执行完毕之后，可以看到 /boot 分区里的空间又空出来了
