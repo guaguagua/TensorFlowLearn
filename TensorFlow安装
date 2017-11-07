@@ -1,0 +1,15 @@
+1  清华镜像下载 anaconda   
+   https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=M&O=D
+
+2  安装 anaconda
+   bash xxx.sh
+3  创建环境
+   # Python 2.7
+   $ conda create -n tensorflow python=2.7
+
+4  激活环境
+   source activate tensorflow
+
+5  安装Tensorflow
+   pip install tensorflow    #cpu版本
+   pip install tensorflow-gpu  #gpu版本
