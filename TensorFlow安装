@@ -13,3 +13,12 @@
 5  安装Tensorflow
    pip install tensorflow    #cpu版本
    pip install tensorflow-gpu  #gpu版本
+   
+6 pycharm配置tensorflow
+   要在pycharm下使用tensorflow，要设置好pycharm下解释器interpreter的路径，这里也就是tensorflow的路径。
+   如果是虚拟的env，或anaconda的env，那就在interpreter路径里添加对应Python bin
+   这里有个找路径的方便方法：
+   打开terminal,输入指令
+   $source activate tensorflow
+   $which python
+   最后在Pycharm File -> Settings ->Project Interpreter下设置解释器路径
