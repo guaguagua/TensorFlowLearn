@@ -54,3 +54,15 @@ print(softmax)  # Result: [0.024, 0.064, 0.175, 0.475, 0.024, 0.064, 0.175]
 sum_z = sum(z)  #Result: 16
 y = [i/sum_z for i in z] #Result: [0.0625, 0.125, 0.1875, 0.25, 0.0625, 0.125, 0.1875]
 这种计算方式所得到的  4.0所占的比重是0.25 ，比softmax得到的0.475要小
+
+3
+在TensorFlow中文文档的教程中， 关于MNIST机器学习入门一节，开头down load mnist数据集的代码
+import tensorflow.examples.tutorials.mnist.input_data
+mnist = input_data.read_data_sets(“MNIST_data/”, one_hot=True)
+
+直接复制运行会报错， NameError: name ‘input_data’ is not defined
+
+应改成如下代码：
+
+import tensorflow.examples.tutorials.mnist.input_data as input_data
+mnist = input_data.read_data_sets(“MNIST_data/”, one_hot=True) 
