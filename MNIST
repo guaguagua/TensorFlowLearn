@@ -66,3 +66,18 @@ mnist = input_data.read_data_sets(“MNIST_data/”, one_hot=True)
 
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 mnist = input_data.read_data_sets(“MNIST_data/”, one_hot=True) 
+
+4  TensorFlow入门程序MNIST无反应
+    1，运行时默认会下载mnist数据集，会比较慢，没有任何提示，
+    这里选择先下载好四个数据集：http://yann.lecun.com/exdb/mnist/，
+    放在和mnist_softmax.py同一个文件夹子下的MNIST_data文件夹里。
+
+    2，把mnist_softmax.py里面的36行mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
+    改为mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+
+    其中”MNIST_data/”就是你的离线数据集的相对路径。意思是把在线下载改为离线搜索，节省时间。
+
+    3，执行
+    python mnist_softmax.py
+
+
