@@ -1,3 +1,19 @@
-1  1
-     AttributeError: ‘module’ object has no attribute ‘mul’
-     解决方法：用tf.multiply替代tf.mul
+1  不同版本 API替换
+
+     (1)AttributeError: 'module' object has no attribute 'merge_all_summaries'
+
+          >> tf.merge_all_summaries() 改为：summary_op = tf.summary.merge_all()
+
+     (2)AttributeError: 'module' object has no attribute 'SummaryWriter'
+
+          >> tf.train.SummaryWriter 改为：tf.summary.FileWriter
+
+     (3)AttributeError: 'module' object has no attribute 'scalar_summary'
+
+          >> tf.scalar_summary 改为：tf.summary.scalar
+
+     (3)AttributeError: 'module' object has no attribute 'histogram_summary'
+          >> histogram_summary 改为：tf.summary.histogram
+          
+     (4)AttributeError: ‘module’ object has no attribute ‘mul’
+          >> tf.mul 改为 tf.multiply
