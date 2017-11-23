@@ -1,0 +1,30 @@
+1
+
+import tensorflow as tf
+W=tf.Variable([0.0],tf.float32)
+b=tf.Variable([0.0],tf.float32)
+x=tf.placeholder(tf.float32)
+linear_model=x*W+b
+
+y=tf.placeholder(tf.float32)
+squared_deltas=tf.square(linear_model-y)
+loss=tf.reduce_sum(squared_deltas)
+
+optimizer=tf.train.GradientDescentOptimizer(0.01)
+train=optimizer.minimize(loss)
+init = tf.global_variables_initializer()
+sess.run(init)#重置变量到初始化值
+for i in range(500):
+    sess.run(train,{x:[1,2,3,4],y:[0,-1,-2,-3]})#把 train也视为一个  Operation，每次train之后，就会修改相关的变量
+    
+    tmp_loss =  sess.run(loss,{x:[1,2,3,4],y:[0,-1,-2,-3]})# 每次训练完成之后，计算下loss函数的输出值
+    print tmp_loss
+    
+    print sess.run(linear_model,{x:[1]})#计算 linear_model输出不需要 y placeholder
+    
+    if(tmp_loss < 0.002):#当loss函数的值满足我们的要求就退出训练
+        print i
+        break
+    
+curr_W, curr_b, curr_loss  = sess.run([W, b, loss],{x:[1,2,3,4],y:[0,-1,-2,-3]})
+print("W: %s b: %s loss: %s"%(curr_W, curr_b, curr_loss))
