@@ -25,3 +25,6 @@
      (6)ValueError: Only call `sigmoid_cross_entropy_with_logits` with named arguments (labels=..., logits=..., ...)
           >> return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(Y,Y_predicted)) 改为
           >> return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=Y,logits=Y_predicted))
+          
+     (7) initialize_all_variables已被弃用
+         >> tf.global_variables_initializer 替代
