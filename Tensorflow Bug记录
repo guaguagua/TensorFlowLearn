@@ -17,3 +17,11 @@
           
      (4)AttributeError: ‘module’ object has no attribute ‘mul’
           >> tf.mul 改为 tf.multiply
+          
+     (5)features = tf.transpose(tf.pack([is_first_class,is_second_class,is_third_class,gender,age]))
+          >> AttributeError: 'module' object has no attribute 'pack'
+          >> 把tf.pack改为 tf.stack
+          
+     (6)ValueError: Only call `sigmoid_cross_entropy_with_logits` with named arguments (labels=..., logits=..., ...)
+          >> return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(Y,Y_predicted)) 改为
+          >> return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=Y,logits=Y_predicted))
