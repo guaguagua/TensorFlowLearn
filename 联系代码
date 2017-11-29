@@ -28,3 +28,27 @@ for i in range(500):
     
 curr_W, curr_b, curr_loss  = sess.run([W, b, loss],{x:[1,2,3,4],y:[0,-1,-2,-3]})
 print("W: %s b: %s loss: %s"%(curr_W, curr_b, curr_loss))
+
+2  队列方式读取图片
+import tensorflow as tf;    
+
+path1 = "/home/bigbang/test/n02085620_7.jpg"
+path2 = "/home/bigbang/test/n02085620_199.jpg"
+file_queue = tf.train.string_input_producer([path1,path2]) #创建输入队列  
+image_reader = tf.WholeFileReader()  
+_, image = image_reader.read(file_queue)  
+image = tf.image.decode_jpeg(image)  
+
+with tf.Session() as sess:  
+    coord = tf.train.Coordinator() #协同启动的线程  
+    threads = tf.train.start_queue_runners(sess=sess, coord=coord) #启动线程运行队列  
+    print sess.run(image)  
+    print "*"*20
+    print sess.run(image)
+    coord.request_stop() #停止所有的线程  
+    coord.join(threads)
+3   直接读取图片
+import tensorflow as tf
+image_raw_data = tf.gfile.FastGFile("/home/bigbang/test/n02085620_7.jpg").read() 
+image = tf.image.decode_jpeg(image_raw_data)
+print image.eval(session=tf.Session())
