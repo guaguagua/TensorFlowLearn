@@ -107,4 +107,22 @@ y = tf.nn.softmax(x)
 z = sess.run(y)
 print z#array([ 0.09003057,  0.24472848,  0.66524094], dtype=float32)
 print z[0]+z[1]+z[2]#1.0
+
+10  批量数据输入测试，所以批量图片输入，得到批量的label
+a = tf.placeholder(tf.float32)
+b = tf.placeholder(tf.float32)
+add_node = a + b  # 等同于tf.add(a, b)
+add_and_triple = add_node * 3
+
+#当真正运行的时候才传入指定的数据进行计算
+print(sess.run(add_node, {a:3, b:4}))
+#输入批量数据，得到批量的结果
+print(sess.run(add_node, {a:[1,3], b:[2,4]}))
+
+print(sess.run(add_and_triple, {a:[1,3], b:[2,4]}))
+
+-->
+7.0
+[ 3.  7.]
+[  9.  21.]
  
